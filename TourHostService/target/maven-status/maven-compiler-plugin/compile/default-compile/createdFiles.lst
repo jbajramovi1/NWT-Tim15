@@ -1,0 +1,11 @@
+com\springjpa\model\Recommendation.class
+com\springjpa\controller\WebController.class
+com\springjpa\SpringJpaPostgreSqlApplication.class
+com\springjpa\model\TourHostDetails.class
+com\springjpa\model\TourHostLocation.class
+com\springjpa\model\TourHostPaymentInfo.class
+com\springjpa\model\TourHostReview.class
+com\springjpa\model\TourHost.class
+com\springjpa\model\TourHostExternalLink.class
+com\springjpa\model\SavedTourHost.class
+com\springjpa\repo\TourHostRepository.class
