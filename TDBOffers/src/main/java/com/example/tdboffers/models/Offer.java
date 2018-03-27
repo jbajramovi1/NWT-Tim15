@@ -25,6 +25,8 @@ public class Offer {
     @ManyToOne(cascade = CascadeType.DETACH, targetEntity = OfferSeason.class)
     private OfferSeason offerSeason;
 
+    public Offer(){}
+
     public Integer getId() {
         return id;
     }

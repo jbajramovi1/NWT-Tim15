@@ -11,6 +11,8 @@ public class OfferSeason {
     @Column
     private String name;
 
+    public OfferSeason() {}
+
     public Integer getId() {
         return id;
     }
