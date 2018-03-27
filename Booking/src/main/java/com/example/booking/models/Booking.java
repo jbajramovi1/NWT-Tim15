@@ -16,35 +16,32 @@ public class Booking {
     @Column
     private Date bookingDate;
 
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Date getBookingDate() {
-        return bookingDate;
-    }
-
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
     }
 
     public Offer getOffer() {
         return offer;
     }
-
     public void setOffer(Offer offer) {
         this.offer = offer;
     }
 
-    public Integer getId() {
-        return id;
+    public Date getBookingDate() {
+        return bookingDate;
     }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }
