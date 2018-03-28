@@ -5,6 +5,8 @@ import com.example.tdboffers.repositories.IOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class OfferService {
     @Autowired
@@ -23,5 +25,13 @@ public class OfferService {
 
         return offerRepository.save(offer);
 
+    }
+
+    public Optional<Offer> getById(Integer id){
+        return offerRepository.findById(id);
+    }
+
+    public void deleteById(Integer id){
+        offerRepository.deleteById(id);
     }
 }

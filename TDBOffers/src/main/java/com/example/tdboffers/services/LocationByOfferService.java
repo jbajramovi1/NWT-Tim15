@@ -18,4 +18,8 @@ public class LocationByOfferService {
         locationByOffer.setOffer(data.getOffer());
         return locationByOfferRepository.save(locationByOffer);
     }
+
+    public void deleteById(Integer id){
+        locationByOfferRepository.deleteById(id);
+    }
 }

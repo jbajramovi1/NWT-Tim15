@@ -19,4 +19,10 @@ public class LocationController {
     public Location createLocation(@RequestBody Location data){
         return locationService.createLocation(data);
     }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Integer id){
+        locationService.deleteById(id);
+    }
 }

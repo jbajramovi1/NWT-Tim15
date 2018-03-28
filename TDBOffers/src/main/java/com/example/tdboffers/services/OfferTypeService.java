@@ -19,4 +19,8 @@ public class OfferTypeService {
 
         return offerTypeRepository.save(offerType);
     }
+
+    public void deleteById(Integer id){
+        offerTypeRepository.deleteById(id);
+    }
 }

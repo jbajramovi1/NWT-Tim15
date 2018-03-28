@@ -20,4 +20,10 @@ public class OfferTypeController {
     public OfferType createOffer(@RequestBody OfferType data){
         return offerTypeService.createOfferType(data);
     }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Integer id){
+        offerTypeService.deleteById(id);
+    }
 }

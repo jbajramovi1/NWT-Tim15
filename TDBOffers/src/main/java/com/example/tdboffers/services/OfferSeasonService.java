@@ -16,4 +16,8 @@ public class OfferSeasonService {
         offerSeason.setName(data.getName());
         return offerSeasonRepository.save(offerSeason);
     }
+
+    public void deleteById(Integer id){
+        offerSeasonRepository.deleteById(id);
+    }
 }

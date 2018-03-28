@@ -20,4 +20,10 @@ public class OfferSeasonController {
     public OfferSeason createOffer(@RequestBody OfferSeason data){
         return offerSeasonService.createOfferSeason(data);
     }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Integer id){
+        offerSeasonService.deleteById(id);
+    }
 }

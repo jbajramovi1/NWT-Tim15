@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/offer")
 public class OfferController {
@@ -18,5 +20,16 @@ public class OfferController {
     @ResponseBody
     public Offer createOffer(@RequestBody Offer data){
         return offerService.createOffer(data);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Optional<Offer> getOfferById(@PathVariable("id") Integer id){
+        return offerService.getById(id);
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Integer id){
+        offerService.deleteById(id);
     }
 }
