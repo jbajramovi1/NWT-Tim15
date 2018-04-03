@@ -15,6 +15,8 @@ public class Location {
     @Column
     private Double latitude;
 
+    public Location(){}
+
     public Integer getId() {
         return id;
     }

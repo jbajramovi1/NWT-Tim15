@@ -13,6 +13,8 @@ public class LocationByOffer {
     @ManyToOne(cascade = CascadeType.DETACH, targetEntity = Location.class)
     private Location location;
 
+    public LocationByOffer() {}
+
     public Integer getId() {
         return id;
     }

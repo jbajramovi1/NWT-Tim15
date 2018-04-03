@@ -17,7 +17,7 @@ public class TourHost implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
-	private long idTourHost;
+	private Integer idTourHost;
  
 	@Column(name = "username")
 	private String usernameTourHost;
