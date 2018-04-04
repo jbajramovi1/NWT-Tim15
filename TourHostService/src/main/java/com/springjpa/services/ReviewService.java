@@ -21,12 +21,12 @@ public class ReviewService {
 	@Autowired
 	TourHostReviewRepository reviewRepo;
 	
-	public ResponseEntity<Object> removeReview(int id) {
+	/**public ResponseEntity<Object> removeReview(int id) {
     	if (reviewRepo.findById(id)==null)
     		ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This review doesn't exist!");    	
     	reviewRepo.delete(reviewRepo.findById(id));   	
     	return ResponseEntity.status(HttpStatus.OK).body(true);
-	}
+	}*/
 	
 	public List<TourHostReview> findReviewsByTourHost (TourHost tourHost) {
         return reviewRepo.findByTourHost(tourHost);

@@ -3,6 +3,7 @@ package com.springjpa.services;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,17 +41,17 @@ public class AdditionalInfoService {
         return linksRepo.findByTourHost(host);
     }
 	
-    public TourHostExternalLink findExternalLink (int id) {
+    public Optional<TourHostExternalLink> findExternalLink (int id) {
         return linksRepo.findById(Integer.valueOf(id));
     }
     
-    public ResponseEntity<Object> removeExternalLink(int id) {
+    /**public ResponseEntity<Object> removeExternalLink(int id) {
     	TourHostExternalLink myLink = linksRepo.findById(id);
     	if (myLink==null)
     		ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This external link doesn't exist!");    	
     	linksRepo.delete(myLink);    	
     	return ResponseEntity.status(HttpStatus.OK).body(true);
-	}
+	}*/
     
     public ResponseEntity<Object> removeExternalLinkByHost(TourHost host) {
     	Iterable<TourHostExternalLink> myLinks = linksRepo.findByTourHost(host);
@@ -79,7 +80,7 @@ public class AdditionalInfoService {
     /*--> Other details*/
     
     
-    public TourHostDetails findTourHostDetails (int id) {
+    public Optional<TourHostDetails> findTourHostDetails (int id) {
         return detailsRepo.findById(Integer.valueOf(id));
     }
     
@@ -87,7 +88,7 @@ public class AdditionalInfoService {
         return detailsRepo.findByTourHost(host);
     }
     
-    public TourHostPaymentInfo findPaymentInfo (int id) {
+    public Optional<TourHostPaymentInfo> findPaymentInfo (int id) {
         return paymentRepo.findById(Integer.valueOf(id));
     }
     
@@ -95,7 +96,7 @@ public class AdditionalInfoService {
         return paymentRepo.findByTourHost(host);
     }
     
-    public TourHostLocation findTourHostLocation (int id) {
+    public Optional<TourHostLocation> findTourHostLocation (int id) {
         return locationRepo.findById(Integer.valueOf(id));
     }
     
