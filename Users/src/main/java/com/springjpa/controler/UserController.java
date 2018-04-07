@@ -35,7 +35,7 @@ public class UserController {
 				user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getImage(), user.getCountry());
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteUser(@RequestParam("id") Integer id) {
 		return korisnikService.deleteUserById(id);
 	}
