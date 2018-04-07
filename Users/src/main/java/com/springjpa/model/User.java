@@ -15,7 +15,9 @@ import com.springjpa.MD5;
 @Table(name = "useri")
 public class User implements Serializable {
 	private static final long serialVersionUID = 2L;
-	 
+	private static String usernamePattern = "^(?!\\s*$).+\n";
+	private static String passwordPattern = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\n";
+	
 	    @Id
 	    @GeneratedValue(strategy=GenerationType.AUTO)
 	    @Column(name="id")
@@ -57,6 +59,7 @@ public class User implements Serializable {
 			return username;
 		}
 		public void setUsername(String username) {
+			if (username.matches(usernamePattern)) throw new IllegalArgumentException("Username must not be empty or containing only blank spaces");
 			this.username = username;
 		}
 		public String getPasswordHash() {
@@ -105,8 +108,6 @@ public class User implements Serializable {
 		private boolean validateUser(String username, String passwordHash, String email, String firstName, String lastName,
 				String phoneNumber, char[] image, String country) {
 			String message = "";
-			String usernamePattern = "^(?!\\s*$).+\n";
-			String passwordPattern = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\n";
 			
 			if (username.matches(usernamePattern)) message = "Username must not be empty or containing only blank spaces";
 			else if (passwordHash.toString().matches(passwordPattern)) message = "Password must be at least 8 character long, have one upper and lower case letter and al least one number";
@@ -116,5 +117,5 @@ public class User implements Serializable {
 			if (message.equals(""))
 		return true;
 		else throw new IllegalArgumentException(message);
-		}
+			}
 }
