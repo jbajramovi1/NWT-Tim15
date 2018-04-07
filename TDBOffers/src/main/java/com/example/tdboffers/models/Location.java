@@ -1,6 +1,8 @@
 package com.example.tdboffers.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="location")
@@ -9,6 +11,7 @@ public class Location {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     @Column
+    @Size(max = 200)
     private String name;
     @Column
     private Double longitude;

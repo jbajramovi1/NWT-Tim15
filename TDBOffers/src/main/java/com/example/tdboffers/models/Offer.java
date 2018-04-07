@@ -1,6 +1,10 @@
 package com.example.tdboffers.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="offer")
@@ -9,16 +13,21 @@ public class Offer {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     @Column
+    @NotNull
+    @Size(max = 100)
     private String name;
     @Column
     private String language;
     @Column (name="participants_limit")
+    @Min(1)
     private Integer participantsLimit;
     @Column
     private String description;
     @Column
+    @Min(0L)
     private Double price;
     @Column
+    @Min(0)
     private Integer duration; //in hours
     @ManyToOne(cascade = CascadeType.DETACH, targetEntity = OfferType.class)
     private OfferType offerType;

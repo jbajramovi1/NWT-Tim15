@@ -1,6 +1,9 @@
 package com.example.tdboffers.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="offer_type")
@@ -9,6 +12,8 @@ public class OfferType {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @Column
+    @NotNull
+    @Size(max=100)
     private String name;
     @Column
     private String image;
