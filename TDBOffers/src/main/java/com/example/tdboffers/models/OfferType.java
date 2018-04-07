@@ -13,6 +13,8 @@ public class OfferType {
     @Column
     private String image;
 
+    public OfferType() {}
+
     public Integer getId() {
         return id;
     }
