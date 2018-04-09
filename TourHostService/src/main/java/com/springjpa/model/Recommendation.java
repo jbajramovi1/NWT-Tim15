@@ -26,17 +26,15 @@ public class Recommendation implements Serializable{
 	@JoinColumn(name="idTourHost")
     private TourHost tourHost;
 
-
-	/** @ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="idUser")*/
-    private int userID;
+	@ManyToOne(targetEntity=User.class)
+	@JoinColumn(name="idUser")
+    private User user;
 	
-	protected Recommendation() {
-	}
+	protected Recommendation() {}
  
-	public Recommendation(TourHost host, int user) {
+	public Recommendation(TourHost host, User user) {
 		this.tourHost = host;
-		this.userID = user;
+		this.user = user;
 	}
 	
 	public TourHost getTourHost() {
@@ -47,16 +45,16 @@ public class Recommendation implements Serializable{
 		this.tourHost = tourHost;
 	}
 	
-	public int getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("TourHostRecommendation[tourHost=%d, userID=%d]", tourHost, userID);
+		return String.format("TourHostRecommendation[tourHost=%d, userID=%d]", tourHost, user);
 	}
 }

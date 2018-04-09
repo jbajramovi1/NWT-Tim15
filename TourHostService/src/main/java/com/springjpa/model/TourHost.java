@@ -17,7 +17,7 @@ public class TourHost implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
-	private Integer idTourHost;
+	private int idTourHost;
  
 	@Column(name = "username")
 	private String usernameTourHost;
@@ -31,8 +31,7 @@ public class TourHost implements Serializable {
 	@Column(name = "name")
 	private String nameTourHost;
  
-	protected TourHost() {
-	}
+	public TourHost() {}
  
 	public TourHost(String username, String pwHash, String email, String name) {
 		this.usernameTourHost = username;

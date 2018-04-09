@@ -28,13 +28,13 @@ public class TourHostReview implements Serializable{
 	@JoinColumn(name="idTourHost")
     private TourHost tourHost;
 
-	/** @ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="idUser")*/
-    private int userID;
+	@ManyToOne(targetEntity=User.class)
+	@JoinColumn(name="idUser")
+    private User user;
     
-	/** @ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="idUser")*/
-    private int tourID;
+	@ManyToOne(targetEntity=Tour.class)
+	@JoinColumn(name="idTour")
+    private Tour tour;
  
 	@Column(name = "reviewTitle")
 	private String reviewTitle;
@@ -51,12 +51,12 @@ public class TourHostReview implements Serializable{
 	protected TourHostReview() {
 	}
 	
-	public TourHostReview(TourHost tourHost, int userID, int tourID, String reviewTitle, Date reviewDate,
+	public TourHostReview(TourHost tourHost, User user, Tour tour, String reviewTitle, Date reviewDate,
 			int reviewRating, char[] review) {
 		super();
 		this.tourHost = tourHost;
-		this.userID = userID;
-		this.tourID = tourID;
+		this.user = user;
+		this.tour = tour;
 		this.reviewTitle = reviewTitle;
 		this.reviewDate = reviewDate;
 		this.reviewRating = reviewRating;
@@ -65,7 +65,7 @@ public class TourHostReview implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TourHostReview [tourHost=" + tourHost + ", userID=" + userID + ", tourID=" + tourID + ", reviewTitle="
+		return "TourHostReview [tourHost=" + tourHost + ", user=" + user + ", tour=" + tour + ", reviewTitle="
 				+ reviewTitle + ", reviewDate=" + reviewDate + ", reviewRating=" + reviewRating + ", review="
 				+ Arrays.toString(review) + "]";
 	}
@@ -78,20 +78,20 @@ public class TourHostReview implements Serializable{
 		this.tourHost = tourHost;
 	}
 	
-	public int getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getTourID() {
-		return tourID;
+	public Tour getTour() {
+		return tour;
 	}
 
-	public void setTourID(int tourID) {
-		this.tourID = tourID;
+	public void setTour(Tour tour) {
+		this.tour = tour;
 	}
 
 	public String getReviewTitle() {

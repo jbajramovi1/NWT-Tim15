@@ -30,6 +30,9 @@ public class TourHostDetails implements Serializable{
 	@Column(name = "website")
 	private String websiteTourHost;
 	
+	@Column(name = "address")
+	private String addressTourHost;
+	
 	@Column(name = "workingHours")
 	private String workingHours;
 	
@@ -42,24 +45,36 @@ public class TourHostDetails implements Serializable{
 		protected TourHostDetails() {
 	}
  
-	public TourHostDetails(TourHost tourHost, String websiteTourHost, String workingHours, char[] descriptionTourHost,
-				String contactNumber) {
-		super();
-		this.tourHost = tourHost;
-		this.websiteTourHost = websiteTourHost;
-		this.workingHours = workingHours;
-		this.descriptionTourHost = descriptionTourHost;
-		this.contactNumber = contactNumber;
-	}	
-	
+
+	public TourHostDetails(TourHost tourHost, String websiteTourHost, String addressTourHost, String workingHours,
+				char[] descriptionTourHost, String contactNumber) {
+			super();
+			this.tourHost = tourHost;
+			this.websiteTourHost = websiteTourHost;
+			this.addressTourHost = addressTourHost;
+			this.workingHours = workingHours;
+			this.descriptionTourHost = descriptionTourHost;
+			this.contactNumber = contactNumber;
+		}
+
+
 	public TourHost getTourHost() {
 		return tourHost;
 	}
 
 	public void setTourHost(TourHost tourHost) {
 		this.tourHost = tourHost;
+	}	
+
+	public String getAddressTourHost() {
+		return addressTourHost;
 	}
-	
+
+
+	public void setAddressTourHost(String addressTourHost) {
+		this.addressTourHost = addressTourHost;
+	}
+
 
 	public String getWebsiteTourHost() {
 		return websiteTourHost;
@@ -95,10 +110,10 @@ public class TourHostDetails implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TourHostDetails [tourHost=" + tourHost + ", websiteTourHost=" + websiteTourHost + ", workingHours="
-				+ workingHours + ", descriptionTourHost=" + Arrays.toString(descriptionTourHost) + ", contactNumber="
-				+ contactNumber + "]";
-	}
+		return "TourHostDetails [id=" + id + ", tourHost=" + tourHost + ", websiteTourHost=" + websiteTourHost
+				+ ", addressTourHost=" + addressTourHost + ", workingHours=" + workingHours + ", descriptionTourHost="
+				+ Arrays.toString(descriptionTourHost) + ", contactNumber=" + contactNumber + "]";
+	}	
 }
 
 

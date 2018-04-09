@@ -1,30 +1,69 @@
 package com.springjpa.controller;
  
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.service.spi.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.springjpa.model.TourHost;
+import com.springjpa.model.User;
+import com.springjpa.model.Recommendation;
 import com.springjpa.repo.TourHostRepository;
+import com.springjpa.repo.UserRepository;
 import com.springjpa.services.TourHostService;
+import com.springjpa.services.UserService;
+import com.springjpa.services.RecommendationService;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
  
 @RestController
-@RequestMapping(path="/tourhost")
 public class WebController {
 	@Autowired
 	TourHostRepository hostRepo;
 	
 	@Autowired
 	TourHostService hostService;
+	
+	@Autowired
+	RecommendationService recomService;
+	
+	@Autowired
+	UserService userService;
+				
+	@RequestMapping(value = "/addrecommendation", method = RequestMethod.GET)
+	public ResponseEntity<Object> addRecommendation(@RequestParam(name = "user") int user, @RequestParam(name = "host") int host) {
+	    try {	
+	    	User response = new RestTemplate().getForObject(
+			        "http://localhost:8080/user?id={user}", User.class, user);
+			userService.checkUser(response, user);
+			User myUser = userService.findUser(user);  
+		    
+		    TourHost tourHost = hostService.findTourHost(host); 	        
+	
+		    Recommendation recommendation = new Recommendation(tourHost, myUser);
+
+	        recomService.registerRecommendation(recommendation);
+	        	      	
+		    return ResponseEntity.ok(recommendation);	       
+	        
+	    } catch (ServiceException e){
+	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error!");
+        }
+	  }
 	
 	@RequestMapping("/save")
 	public String process(){
@@ -54,13 +93,12 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<Object> register(@RequestParam(name = "username") String username, 
-    		@RequestParam(name = "password") String pw, @RequestParam(name = "email") String email, 
-    		@RequestParam(name = "name") String name)
+    public ResponseEntity<Object> register(@RequestBody TourHost tourHost)
     {
-		TourHost host = new TourHost(username, pw, email, name);
+		if (tourHost == null)
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing information");
         try {
-        	return hostService.registerTourHost(host);
+        	return hostService.registerTourHost(tourHost);
         } catch (ServiceException e){
         	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
         }

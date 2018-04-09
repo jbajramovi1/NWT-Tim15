@@ -1,8 +1,7 @@
-com\springjpa\repo\TourHostExternalLinkRepository.class
 com\springjpa\model\Recommendation.class
-com\springjpa\model\TourHostLocation.class
+com\springjpa\model\User.class
 com\springjpa\model\TourHostPaymentInfo.class
-com\springjpa\services\SavedTourHostsService.class
+com\springjpa\services\UserService.class
 com\springjpa\services\TourHostService.class
 com\springjpa\model\TourHostReview.class
 com\springjpa\services\RecommendationService.class
@@ -11,13 +10,10 @@ com\springjpa\services\ReviewService.class
 com\springjpa\services\AdditionalInfoService.class
 com\springjpa\controller\WebController.class
 com\springjpa\SpringJpaPostgreSqlApplication.class
-com\springjpa\repo\TourHostLocationRepository.class
 com\springjpa\model\TourHostDetails.class
 com\springjpa\repo\TourHostRecommendationRepository.class
 com\springjpa\repo\TourHostReviewRepository.class
+com\springjpa\model\Tour.class
 com\springjpa\repo\TourHostPaymentInfoRepository.class
 com\springjpa\repo\TourHostDetailsRepository.class
-com\springjpa\repo\TourHostSavedRepository.class
-com\springjpa\model\TourHostExternalLink.class
-com\springjpa\model\SavedTourHost.class
 com\springjpa\repo\TourHostRepository.class

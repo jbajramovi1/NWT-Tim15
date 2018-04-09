@@ -6,9 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.springjpa.model.TourHost;
 import com.springjpa.model.TourHostDetails;
@@ -22,6 +24,17 @@ public class TourHostService{
 	
 	@Autowired
 	TourHostDetailsRepository detailsRepo;
+	
+    @Autowired       
+    @LoadBalanced     
+    protected RestTemplate restTemplate; 
+
+    protected String serviceUrl;
+    
+    public TourHostService(String serviceUrl) {
+        this.serviceUrl = serviceUrl.startsWith("http") ?
+               serviceUrl : "http://" + serviceUrl;
+    }
 	
 	public List<TourHost> findAllTourHosts() {
         return hostRepo.findAll();
@@ -59,6 +72,7 @@ public class TourHostService{
 
         return ResponseEntity.status(HttpStatus.OK).body( newHost != null);
     }
+    
     
 	public String toMD5(String str){
         byte[] pass = null;

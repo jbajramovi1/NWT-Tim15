@@ -30,4 +30,12 @@ public class RecommendationService {
 	public List<Recommendation> findRecommendationsByTourHost (TourHost tourHost) {
         return recomRepo.findByTourHost(tourHost);
     }
+	
+    public ResponseEntity<Object> registerRecommendation(Recommendation recommendation) {
+    	Recommendation r = recomRepo.findByTourHostAndUser(recommendation.getTourHost(), recommendation.getUser());
+    	if (r == null)
+	        recomRepo.save(recommendation);
+	    
+    	return ResponseEntity.status(HttpStatus.OK).body("");
+    }
 }

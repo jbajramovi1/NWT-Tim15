@@ -1,0 +1,21 @@
+#Spring 
+spring:
+  datasource:
+    password: elza2017
+    url: jdbc:postgresql://localhost/testdb
+    username: postgres
+  jpa:
+    generate-ddl: true
+    
+  application:
+     name: tourhost-service
+    
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+# HTTP Server
+server:
+  port: 8090  
