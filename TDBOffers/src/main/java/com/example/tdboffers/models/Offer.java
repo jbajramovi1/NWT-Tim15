@@ -34,6 +34,10 @@ public class Offer {
     @ManyToOne(cascade = CascadeType.DETACH, targetEntity = OfferSeason.class)
     private OfferSeason offerSeason;
 
+    @ManyToOne(cascade = CascadeType.ALL,targetEntity=TourHost.class)
+    @JoinColumn(name="tour_host")
+    private TourHost tourHost;
+
     public Offer(){}
 
     public Integer getId() {
@@ -106,5 +110,13 @@ public class Offer {
 
     public void setOfferSeason(OfferSeason offerSeason) {
         this.offerSeason = offerSeason;
+    }
+
+    public TourHost getTourHost() {
+        return tourHost;
+    }
+
+    public void setTourHost(TourHost tourHost) {
+        this.tourHost = tourHost;
     }
 }

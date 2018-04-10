@@ -1,7 +1,9 @@
 package com.example.tdboffers.services;
 
 import com.example.tdboffers.models.Offer;
+import com.example.tdboffers.models.TourHost;
 import com.example.tdboffers.repositories.IOfferRepository;
+import com.example.tdboffers.repositories.ITourHostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class OfferService {
     @Autowired
     private IOfferRepository offerRepository;
 
+
     public Offer createOffer(Offer data){
         Offer offer=new Offer();
         offer.setName(data.getName());
@@ -25,14 +28,16 @@ public class OfferService {
         offer.setOfferType(data.getOfferType());
         offer.setParticipantsLimit(data.getParticipantsLimit());
         offer.setPrice(data.getPrice());
-
+        offer.setTourHost(data.getTourHost());
         return offerRepository.save(offer);
-
     }
 
     public Offer getById(Integer id){
         return offerRepository.getOfferById(id);
     }
+
+    public List<Offer> getByTourHost(Integer host) {
+        return offerRepository.getOfferByTourHostIdHost(host); }
 
     public List<Offer> getAll(){
         return offerRepository.findAll();
@@ -52,7 +57,7 @@ public class OfferService {
         if (data.getOfferType()!=null) offer.setOfferType(data.getOfferType());
         if (data.getParticipantsLimit()!=null) offer.setParticipantsLimit(data.getParticipantsLimit());
         if (data.getPrice()!=null) offer.setPrice(data.getPrice());
-
+        if (data.getTourHost()!=null) offer.setTourHost(data.getTourHost());
         return offerRepository.save(offer);
     }
 }
