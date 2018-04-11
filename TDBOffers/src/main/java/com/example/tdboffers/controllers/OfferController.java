@@ -42,7 +42,7 @@ public class OfferController {
     @RequestMapping(value = "/getbyhost/{host}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOfferByHost(@PathVariable("host") Integer host){
         TourHost response = new RestTemplate().getForObject(
-                "http://localhost:8080/tourhost/find?id={host}", TourHost.class, host);
+                "http://localhost:8090/find?user={host}", TourHost.class, host);
         if (response==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host with given id");
         }
