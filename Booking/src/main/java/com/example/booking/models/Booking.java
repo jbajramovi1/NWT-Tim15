@@ -9,10 +9,11 @@ public class Booking {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
-    private User user;
-    @ManyToOne
-    private Offer offer;
+
+    private Integer userId;
+
+    private Integer offerId;
+
     @Column
     private Date bookingDate;
 
@@ -24,18 +25,20 @@ public class Booking {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public Offer getOffer() {
-        return offer;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
-    public void setOffer(Offer offer) {
-        this.offer = offer;
+
+    public Integer getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
     }
 
     public Date getBookingDate() {
