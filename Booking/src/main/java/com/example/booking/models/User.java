@@ -1,19 +1,13 @@
 package com.example.booking.models;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name="users")
 public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Integer idKorisnika;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdKorisnika() {
+        return idKorisnika;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdKorisnika(Integer idKorisnika) {
+        this.idKorisnika = idKorisnika;
     }
 }

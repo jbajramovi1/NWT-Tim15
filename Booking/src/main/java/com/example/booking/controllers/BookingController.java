@@ -1,19 +1,16 @@
 package com.example.booking.controllers;
 
-import com.example.booking.models.Offer;
-import com.example.booking.models.User;
-import com.example.booking.repositories.OfferRepository;
-import com.example.booking.repositories.UserRepository;
 import com.example.booking.models.Booking;
 import com.example.booking.requests.BookingRequest;
 import com.example.booking.services.BookingService;
+import com.example.booking.services.OfferService;
+import com.example.booking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,15 +18,15 @@ import java.util.Optional;
 @RestController
 public class BookingController {
 
-    private final UserRepository userRepository;
-    private final OfferRepository offerRepository;
+    private final OfferService offerService;
     private final BookingService bookingService;
+    private final UserService userService;
 
     @Autowired
-    public BookingController(BookingService bookingService,  UserRepository userRepository,  OfferRepository offerRepository) {
+    public BookingController(BookingService bookingService, OfferService offerService, UserService userService) {
         this.bookingService = bookingService;
-        this.userRepository =  userRepository;
-        this.offerRepository = offerRepository;
+        this.offerService = offerService;
+        this.userService = userService;
     }
 
     //Get all bookings
@@ -52,20 +49,18 @@ public class BookingController {
     //Create booking
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Booking> booking(@Valid @RequestBody BookingRequest request) {
-        Optional<Offer> offer = offerRepository.findById(request.getOfferId());
-        if (!offer.isPresent()) {
+        if (request.getOfferId() == null || !offerService.offerExists(request.getOfferId())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Optional<User> user = userRepository.findById(request.getUserId());
-        if (!user.isPresent()) {
+        if (request.getUserId() == null || !userService.userExists(request.getUserId())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Booking booking = new Booking();
         booking.setBookingDate(request.getBookingDate());
-        booking.setUser(user.get());
-        booking.setOffer(offer.get());
+        booking.setUserId(request.getUserId());
+        booking.setOfferId(request.getOfferId());
         bookingService.save(booking);
         return new ResponseEntity<>(booking, HttpStatus.OK);
     }
