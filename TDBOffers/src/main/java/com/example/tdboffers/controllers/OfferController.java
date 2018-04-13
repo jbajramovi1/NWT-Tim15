@@ -1,18 +1,17 @@
 package com.example.tdboffers.controllers;
 
 import com.example.tdboffers.models.Offer;
-import com.example.tdboffers.models.TourHost;
 import com.example.tdboffers.services.OfferService;
-import com.example.tdboffers.services.TourHostService;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/offer")
@@ -20,18 +19,30 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
+
+    @Qualifier("eurekaClient")
     @Autowired
-    private TourHostService tourHostService;
+    EurekaClient discoveryClient;
 
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public ResponseEntity<Object> createOffer(@RequestBody Offer data){
-        TourHost tourHost=tourHostService.getById(data.getTourHost().getIdHost());
-        if (tourHost==null){
+        try {
+            InstanceInfo instanceInfo = discoveryClient.getNextServerFromEureka("tourhost-service", false);
+            String url = instanceInfo.getHomePageUrl() + "/find?user="+data.getTourHost();
+
+            Object response = new RestTemplate().getForObject(
+                    url, Object.class, data.getTourHost());
+
+            return ResponseEntity.status(HttpStatus.OK).body(offerService.createOffer(data));
+
+
+        }
+        catch (HttpClientErrorException exception){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host with given id");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(offerService.createOffer(data));
+
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
@@ -41,20 +52,19 @@ public class OfferController {
 
     @RequestMapping(value = "/getbyhost/{host}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOfferByHost(@PathVariable("host") Integer host){
-        TourHost response = new RestTemplate().getForObject(
-                "http://localhost:8090/find?user={host}", TourHost.class, host);
-        if (response==null){
+        try {
+            InstanceInfo instanceInfo = discoveryClient.getNextServerFromEureka("tourhost-service", false);
+            String url = instanceInfo.getHomePageUrl() + "/find?user="+host;
+
+            Object response = new RestTemplate().getForObject(
+                    url, Object.class, host);
+
+            return ResponseEntity.status(HttpStatus.OK).body(offerService.getByTourHost(host));
+        }
+        catch (HttpClientErrorException exception){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host with given id");
         }
 
-        TourHost tourHost=tourHostService.getById(host);
-
-        if (tourHost==null){
-            TourHost registered=tourHostService.createTourHost(tourHost);
-            tourHost=registered;
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(offerService.getByTourHost(tourHost.getIdHost()));
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

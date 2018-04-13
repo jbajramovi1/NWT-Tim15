@@ -1,15 +1,12 @@
 package com.example.tdboffers.services;
 
 import com.example.tdboffers.models.Offer;
-import com.example.tdboffers.models.TourHost;
 import com.example.tdboffers.repositories.IOfferRepository;
-import com.example.tdboffers.repositories.ITourHostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -37,7 +34,7 @@ public class OfferService {
     }
 
     public List<Offer> getByTourHost(Integer host) {
-        return offerRepository.getOfferByTourHostIdHost(host); }
+        return offerRepository.getOfferByTourHost(host); }
 
     public List<Offer> getAll(){
         return offerRepository.findAll();
