@@ -5,6 +5,8 @@ eureka:
   client:  # Not a client, don't register with yourself
     registerWithEureka: false
     fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:9091/
 
 server:
-  port: 8761 
+  port: 9091 

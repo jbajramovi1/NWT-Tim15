@@ -1,5 +1,6 @@
 com\springjpa\model\Recommendation.class
 com\springjpa\model\User.class
+com\springjpa\repo\UserRepository.class
 com\springjpa\model\TourHostPaymentInfo.class
 com\springjpa\services\UserService.class
 com\springjpa\services\TourHostService.class
@@ -13,7 +14,6 @@ com\springjpa\SpringJpaPostgreSqlApplication.class
 com\springjpa\model\TourHostDetails.class
 com\springjpa\repo\TourHostRecommendationRepository.class
 com\springjpa\repo\TourHostReviewRepository.class
-com\springjpa\model\Tour.class
 com\springjpa\repo\TourHostPaymentInfoRepository.class
 com\springjpa\repo\TourHostDetailsRepository.class
 com\springjpa\repo\TourHostRepository.class

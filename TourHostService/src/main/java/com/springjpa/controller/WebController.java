@@ -1,14 +1,10 @@
 package com.springjpa.controller;
  
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.service.spi.ServiceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -16,13 +12,10 @@ import com.springjpa.model.TourHost;
 import com.springjpa.model.User;
 import com.springjpa.model.Recommendation;
 import com.springjpa.repo.TourHostRepository;
-import com.springjpa.repo.UserRepository;
 import com.springjpa.services.TourHostService;
 import com.springjpa.services.UserService;
 import com.springjpa.services.RecommendationService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,12 +36,19 @@ public class WebController {
 	
 	@Autowired
 	UserService userService;
+	
+    @Autowired
+    @LoadBalanced
+    protected RestTemplate restTemplate; 
+ 
+    protected String serviceUrl = "http://USER-SERVICE";
 				
 	@RequestMapping(value = "/addrecommendation", method = RequestMethod.GET)
 	public ResponseEntity<Object> addRecommendation(@RequestParam(name = "user") int user, @RequestParam(name = "host") int host) {
 	    try {	
-	    	User response = new RestTemplate().getForObject(
-			        "http://localhost:8080/user?id={user}", User.class, user);
+	    	User response = restTemplate.getForObject(serviceUrl
+	                + "/user?id={user}",  User.class, user);
+	    			
 			userService.checkUser(response, user);
 			User myUser = userService.findUser(user);  
 		    

@@ -46,10 +46,5 @@ public class SpringJpaPostgreSqlApplication implements CommandLineRunner{
     public TourHostService tourHostService() {
         return new TourHostService(TOUR_HOST_SERVICE_URL);
     }
-
-    /**@Bean
-    public WebController webController() {
-         return new WebController(tourHostService()); 
-    }*/
 }
 

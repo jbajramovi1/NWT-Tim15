@@ -32,10 +32,6 @@ public class TourHostReview implements Serializable{
 	@JoinColumn(name="idUser")
     private User user;
     
-	@ManyToOne(targetEntity=Tour.class)
-	@JoinColumn(name="idTour")
-    private Tour tour;
- 
 	@Column(name = "reviewTitle")
 	private String reviewTitle;
 	
@@ -51,12 +47,11 @@ public class TourHostReview implements Serializable{
 	protected TourHostReview() {
 	}
 	
-	public TourHostReview(TourHost tourHost, User user, Tour tour, String reviewTitle, Date reviewDate,
+	public TourHostReview(TourHost tourHost, User user, String reviewTitle, Date reviewDate,
 			int reviewRating, char[] review) {
 		super();
 		this.tourHost = tourHost;
 		this.user = user;
-		this.tour = tour;
 		this.reviewTitle = reviewTitle;
 		this.reviewDate = reviewDate;
 		this.reviewRating = reviewRating;
@@ -65,7 +60,7 @@ public class TourHostReview implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TourHostReview [tourHost=" + tourHost + ", user=" + user + ", tour=" + tour + ", reviewTitle="
+		return "TourHostReview [tourHost=" + tourHost + ", user=" + user + ", reviewTitle="
 				+ reviewTitle + ", reviewDate=" + reviewDate + ", reviewRating=" + reviewRating + ", review="
 				+ Arrays.toString(review) + "]";
 	}
@@ -84,14 +79,6 @@ public class TourHostReview implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Tour getTour() {
-		return tour;
-	}
-
-	public void setTour(Tour tour) {
-		this.tour = tour;
 	}
 
 	public String getReviewTitle() {
