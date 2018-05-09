@@ -2,13 +2,13 @@
 spring:
   datasource:
     password: elza2017
-    url: jdbc:postgresql://localhost/tour-host
+    url: jdbc:postgresql://postgres-db:5433/tour-host
     username: postgres
   jpa:
     generate-ddl: true
     
   application:
-     name: tourhost-service
+     name: tourhost-service     
     
 # Discovery Server Access
 eureka:
