@@ -1,0 +1,37 @@
+version: '2'
+services:
+    tourhost-service:
+        image: tourhost-build
+        expose:
+            - 8090
+        ports: 
+            - 8090:8090
+        links:
+            - db:db
+            - eureka
+        depends_on:
+            - db
+            - eureka
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+    eureka:
+        container_name: eureka
+        image: eureka-build
+        expose:
+            - 9091
+        ports: 
+            - 9091:9091
+    db:
+        container_name: postgres-db
+        image: postgres:9.5
+        volumes:
+            - postgres-db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=123
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432
+volumes:
+    postgres-db: {}
