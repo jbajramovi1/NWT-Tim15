@@ -24,6 +24,7 @@ public class OfferController {
     @Autowired
     EurekaClient discoveryClient;
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -45,11 +46,13 @@ public class OfferController {
 
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<Offer> getOfferById(@PathVariable("id") Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(offerService.getById(id));
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getbyhost/{host}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOfferByHost(@PathVariable("host") Integer host){
         try {
@@ -67,11 +70,13 @@ public class OfferController {
 
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<Object> getOffers(){
         return ResponseEntity.status(HttpStatus.OK).body(offerService.getAll());
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
@@ -79,6 +84,7 @@ public class OfferController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "update/{id}", consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

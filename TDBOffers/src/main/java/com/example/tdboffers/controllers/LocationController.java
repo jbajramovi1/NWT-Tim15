@@ -21,17 +21,19 @@ public class LocationController {
         return locationService.createLocation(data);
     }
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<Location> getLocationById(@PathVariable("id") Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(locationService.getById(id));
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<Object> getLocations(){
         return ResponseEntity.status(HttpStatus.OK).body(locationService.getAll());
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> deleteLocation(@PathVariable("id") Integer id){
@@ -39,6 +41,7 @@ public class LocationController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "update/{id}", consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

@@ -15,6 +15,7 @@ public class OfferTypeController {
     @Autowired
     private OfferTypeService offerTypeService;
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -22,16 +23,19 @@ public class OfferTypeController {
         return offerTypeService.createOfferType(data);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<OfferType> getOfferTypeById(@PathVariable("id") Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(offerTypeService.getById(id));
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<Object> getOfferType(){
         return ResponseEntity.status(HttpStatus.OK).body(offerTypeService.getAll());
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
@@ -39,6 +43,7 @@ public class OfferTypeController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "update/{id}", consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

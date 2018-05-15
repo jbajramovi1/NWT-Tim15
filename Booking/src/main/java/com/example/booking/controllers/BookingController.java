@@ -30,6 +30,7 @@ public class BookingController {
     }
 
     //Get all bookings
+    @CrossOrigin(origins = "*")
     @RequestMapping("/booking/{id}")
     public ResponseEntity<Booking> booking(@PathVariable(value="id") Integer id) {
         Optional<Booking> bookingOptional = bookingService.findById(id);
@@ -40,6 +41,7 @@ public class BookingController {
     }
 
     //Get booking by Id
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Booking>> booking() {
         List<Booking> bookingList = bookingService.findAll();
@@ -47,6 +49,7 @@ public class BookingController {
     }
 
     //Create booking
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Booking> booking(@Valid @RequestBody BookingRequest request) {
         if (request.getOfferId() == null || !offerService.offerExists(request.getOfferId())) {

@@ -15,6 +15,7 @@ public class OfferSeasonController {
     @Autowired
     private OfferSeasonService offerSeasonService;
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -22,16 +23,19 @@ public class OfferSeasonController {
         return offerSeasonService.createOfferSeason(data);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<OfferSeason> getOfferSeasonById(@PathVariable("id") Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(offerSeasonService.getById(id));
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<Object> getOfferSeasons(){
         return ResponseEntity.status(HttpStatus.OK).body(offerSeasonService.getAll());
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
@@ -39,6 +43,7 @@ public class OfferSeasonController {
         return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "update/{id}", consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
