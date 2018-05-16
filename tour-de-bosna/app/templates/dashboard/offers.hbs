@@ -1,4 +1,44 @@
-{{#each offers as |offer|}}
-  <span>Hello, {{offer.name}}!</span><br>
-{{/each}}
+<div class="row">
+  <div class="col-6">
+    <span>List of offers:</span>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Language</th>
+          <th scope="col">Description</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each offers as |offer|}}
+          <tr>
+            <th scope="row">{{offer.id}}</th>
+            <td>{{offer.name}}</td>
+            <td>{{offer.language}}</td>
+            <td>{{offer.description}}</td>
+            <td>{{offer.duration}}</td>
+            <td>{{offer.price}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+    <span>Create offer:</span><br>
+    {{input type="text" value=name placeholder="Name" disabled=false class="form-control"}}
+    {{input type="text" value=language placeholder="Language" disabled=false class="form-control"}}
+    {{input type="text" value=description placeholder="Description" disabled=false class="form-control"}}
+    {{input type="text" value=duration placeholder="Duration" disabled=false class="form-control"}}
+    {{input type="text" value=price placeholder="Price" disabled=false class="form-control"}}
+    <div class="pull-right">
+      <button {{action 'createOffer'}} type="button" class="btn btn-primary">Create</button>
+    </div>
+    {{#if serverError}}
+      <span>{{serverErrorText}}</span>
+    {{/if}}
+  </div>
+</div>
 {{outlet}}

@@ -1,7 +1,16 @@
 .app-main-container {
   padding: 0px;
 }
+.main-navbar {
+  margin-bottom: 3rem;
+}
 .dashboard-dropdown-menu {
   right: 5%;
   left: unset;
+}
+.form-control {
+  margin-bottom: 1rem;
+}
+.pull-right {
+  text-align: right;
 }
