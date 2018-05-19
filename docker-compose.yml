@@ -1,10 +1,10 @@
-version: '2'
+version: '3'
 services:
     tourhost-service:
         image: tourhost-build
         expose:
             - 8090
-        ports: 
+        ports:
             - 8090:8090
         links:
             - db:db
@@ -28,15 +28,30 @@ services:
                 - eureka
             environment:
                 EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+    user-service:
+            image: docker-user
+            expose:
+                - 8010
+            ports:
+                - 8010:8010
+            links:
+                - users:users
+                - eureka
+            depends_on:
+                - users
+                - eureka
+            environment:
+                EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+
     gateway:
         image: zuul-build
-        ports: 
+        ports:
             - 9090:9090
         expose:
             - 9090
         links:
             - eureka
-        depends_on:  
+        depends_on:
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
@@ -45,7 +60,7 @@ services:
         image: eureka-build
         expose:
             - 9091
-        ports: 
+        ports:
             - 9091:9091
     db:
         container_name: postgres-db
@@ -71,6 +86,19 @@ services:
                 - PGDATA=/var/lib/postgresql/data/pgdata
             ports:
                 - 5432
+    users:
+            container_name: users-db
+            image: postgres:9.5
+            volumes:
+                - users-db:/var/lib/postgresql/data
+            environment:
+                - POSTGRES_PASSWORD=elza2017
+                - POSTGRES_USER=postgres
+                - POSTGRES_DB=users
+                - PGDATA=/var/lib/postgresql/data/pgdata
+            ports:
+                - 5432
 volumes:
     postgres-db: {}
     offers-db: {}
+    users-db: {}
