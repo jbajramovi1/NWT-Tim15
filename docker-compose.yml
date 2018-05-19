@@ -7,13 +7,14 @@ services:
         ports:
             - 8090:8090
         links:
-            - db:db
+            - dbtourhost:dbtourhost
             - eureka
         depends_on:
-            - db
+            - dbtourhost
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+            
     offers-client:
             image: offer-build
             expose:
@@ -28,17 +29,18 @@ services:
                 - eureka
             environment:
                 EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+
     user-service:
-            image: docker-user
+            image: user-build
             expose:
                 - 8010
             ports:
                 - 8010:8010
             links:
-                - users:users
+                - dbusers:dbusers
                 - eureka
             depends_on:
-                - users
+                - dbusers
                 - eureka
             environment:
                 EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
@@ -55,18 +57,20 @@ services:
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+            
     eureka:
-        container_name: eureka
+        container_name: eureka-build
         image: eureka-build
         expose:
             - 9091
         ports:
             - 9091:9091
-    db:
-        container_name: postgres-db
+            
+    dbtourhost:
+        container_name: tourhost-db
         image: postgres:9.5
         volumes:
-            - postgres-db:/var/lib/postgresql/data
+            - tourhost-db:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=123
             - POSTGRES_USER=postgres
@@ -74,6 +78,7 @@ services:
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - 5432
+            
     dboffers:
             container_name: offers-db
             image: postgres:9.5
@@ -86,19 +91,20 @@ services:
                 - PGDATA=/var/lib/postgresql/data/pgdata
             ports:
                 - 5432
-    users:
+                
+    dbusers:
             container_name: users-db
             image: postgres:9.5
             volumes:
                 - users-db:/var/lib/postgresql/data
             environment:
-                - POSTGRES_PASSWORD=elza2017
+                - POSTGRES_PASSWORD=123
                 - POSTGRES_USER=postgres
                 - POSTGRES_DB=users
                 - PGDATA=/var/lib/postgresql/data/pgdata
             ports:
                 - 5432
 volumes:
-    postgres-db: {}
+    tourhost-db: {}
     offers-db: {}
     users-db: {}
