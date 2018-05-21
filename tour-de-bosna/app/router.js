@@ -10,8 +10,10 @@ Router.map(function() {
   this.route('dashboard', function() {
     this.route('offers');
     this.route('booking');
+    this.route('login');
   });
   this.route('welcome');
+
 });
 
 export default Router;
