@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('offers');
     this.route('booking');
   });
+  this.route('welcome');
 });
 
 export default Router;
