@@ -18,7 +18,7 @@ export default ApplicationService.extend({
       });
   },
   createBooking: function(data) {
-    return this.ajax({url: '/booking', type: 'POST', data: data})
+    return this.ajax({url: '/booking', type: 'POST', data: JSON.stringify(data)})
       .then(function(result) {
         return result;
       });

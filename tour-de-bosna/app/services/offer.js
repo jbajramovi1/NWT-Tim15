@@ -18,13 +18,14 @@ export default ApplicationService.extend({
       });
   },
   createOffer: function(data) {
-    return this.ajax({url: '/offer/create', type: 'POST', data: data})
+    console.log("data", data);
+    return this.ajax({url: '/offer/create', type: 'POST', data: JSON.stringify(data)})
       .then(function(result) {
         return result;
       });
   },
   updateOffer: function(id, data) {
-    return this.ajax({url: '/offer/update' + id, type: 'POST', data: data})
+    return this.ajax({url: '/offer/update' + id, type: 'POST', data: JSON.stringify(data)})
       .then(function(result) {
         return result;
       });
