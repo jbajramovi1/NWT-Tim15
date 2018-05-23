@@ -11,19 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springjpa.model.User;
+import com.springjpa.repository.UserRepository;
 import com.springjpa.services.UserService;
 
 @RestController
-@CrossOrigin
 @RequestMapping(path = "/user")
 public class UserController {
 
 	@Autowired
 	private UserService korisnikService;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getUserById(@RequestParam("id") Integer id) {
-		return korisnikService.getUserById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(korisnikService.getUserById(id));
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/")
+	public ResponseEntity<?> getAllUsers() {
+		return ResponseEntity.status(HttpStatus.OK).body(userRepo.findAll());
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -32,7 +40,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Potrebno je poslati podatke user-a");
 
 		return korisnikService.saveUser(user.getUsername(), user.getPasswordHash(), user.getEmail(),
-				user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getImage(), user.getCountry());
+				user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getImage(), user.getCountry(), user.getRole());
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)

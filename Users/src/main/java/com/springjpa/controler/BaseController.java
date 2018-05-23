@@ -21,11 +21,11 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/saveUser")
-	public String saveAdmin(){
+	public String saveUser(){
 		
 		char [] list = null;
 		User user = new User("dummyUser", "Test1234", "elzaa_95@hotmail.com", "Elza", "Kalac", 
-				"066020564", list , "BiH") ;
+				"066020564", list , "BiH", "") ;
 		userRepo.save(user);
 		return "";
 	}

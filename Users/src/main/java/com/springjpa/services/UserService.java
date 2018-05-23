@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.amqp.core.TopicExchange;
 import com.springjpa.model.User;
 import com.springjpa.repository.UserRepository;
@@ -32,11 +35,14 @@ public class UserService {
 			String lastName,
 			String phoneNumber, 
 			char[] image, 
-			String country) {
+			String country,
+			String role) {
 
 		User user;
 		try {
-			user = new User(username, password, email, firstName, lastName, phoneNumber, image, country);
+			user = new User(username, password, email, firstName, lastName, phoneNumber, image, country, role);
+			if (repository.findByUsername(user.getUsername())!=null)
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username mora biti jedinstven");   
 			repository.save(user);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
@@ -44,17 +50,37 @@ public class UserService {
 
 		return ResponseEntity.ok(user);
 	}
+	
+	public ResponseEntity<Object> registerKorisnik(User korisnik) {
+		  
+	    
+	    User kreiranKorisnik = repository.save(korisnik);
+
+	    return ResponseEntity.status(HttpStatus.OK).body( kreiranKorisnik != null);
+	}
 
 	public ResponseEntity<?> getUserById(Integer id) {
-		User user = repository.findByIdKorisnika(id);
+		Optional<User> user = repository.findUserById(id);
 		if (user != null)
 			return ResponseEntity.ok(user);
 		else
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ne postoji user sa datim id");
 	}
+	
+	public ResponseEntity<?> getUserByUsername(String username) {
+		User user = repository.findByUsername(username);
+		if (user != null)
+			return ResponseEntity.ok(user);
+		else
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
+	}
+	
+	public List<User> findAll() {
+	    return repository.findAll();
+	}
 
 	public ResponseEntity<?> deleteUserById(Integer id) {
-		User user = repository.findByIdKorisnika(id);
+		Optional<User> user = repository.findUserById(id);
 		if (user != null) {
 			repository.delete(id);
 		    String routingKey = "user.deleted";
@@ -66,3 +92,8 @@ public class UserService {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ne postoji user sa datim id");
 	}
 }
+
+ 
+
+
+

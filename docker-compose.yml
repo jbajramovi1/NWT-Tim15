@@ -14,7 +14,6 @@ services:
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
-            
     offers-client:
             image: offer-build
             expose:
@@ -28,8 +27,7 @@ services:
                 - dboffers
                 - eureka
             environment:
-                EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
-
+                EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka            
     user-service:
             image: user-build
             expose:
@@ -44,7 +42,6 @@ services:
                 - eureka
             environment:
                 EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
-
     gateway:
         image: zuul-build
         ports:
@@ -56,16 +53,14 @@ services:
         depends_on:
             - eureka
         environment:
-            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
-            
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka         
     eureka:
         container_name: eureka-build
         image: eureka-build
         expose:
             - 9091
         ports:
-            - 9091:9091
-            
+            - 9091:9091       
     dbtourhost:
         container_name: tourhost-db
         image: postgres:9.5
@@ -77,8 +72,7 @@ services:
             - POSTGRES_DB=postgres
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
-            - 5432
-            
+            - 5432      
     dboffers:
             container_name: offers-db
             image: postgres:9.5
@@ -90,8 +84,7 @@ services:
                 - POSTGRES_DB=dboffers
                 - PGDATA=/var/lib/postgresql/data/pgdata
             ports:
-                - 5432
-                
+                - 5432          
     dbusers:
             container_name: users-db
             image: postgres:9.5

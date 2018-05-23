@@ -1,8 +1,6 @@
-package com.springjpa.model;
+package com.example.demo.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +45,6 @@ public class User implements Serializable {
 		public User(String username, String password, String email, String firstName, String lastName,
 				String phoneNumber, char[] image, String country, String role) {
 			super();
-			validateUser(username, password, email, firstName, lastName, phoneNumber, image, country, role);
 			this.username = username;
 			this.password = password;
 			this.email = email;
@@ -56,13 +53,13 @@ public class User implements Serializable {
 			this.phoneNumber = phoneNumber;
 			this.image = image;
 			this.country = country;
-			this.role = roleUser;
+			this.role = role;
 		}
 		
-		public Integer getId() {
+		public Integer getIdKorisnika() {
 			return id;
 		}
-		public void setId(Integer idKorisnika) {
+		public void setIdKorisnika(Integer idKorisnika) {
 			this.id = idKorisnika;
 		}
 		public String getUsername() {
@@ -118,29 +115,5 @@ public class User implements Serializable {
 		}
 		public void setRole(String role) {
 			this.role = role;
-		}
-		
-		private static String usernamePattern = "^(?!\\s*$).+\n";
-		private static String passwordPattern = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$\n";
-		
-		private boolean validateUser(String username, String password, String email, String firstName, String lastName,
-				String phoneNumber, char[] image, String country, String role) {
-			String message = "";
-			
-			if (username.matches(usernamePattern)) message = "Username must not be empty or containing only blank spaces";
-			else if (password.toString().matches(passwordPattern)) message = "Password must be at least 8 character long, have one upper and lower case letter and at least one number";
-			else if (firstName.matches(usernamePattern)) message = "First name must not be empty or containing only blank spaces";
-			else if (lastName.matches(usernamePattern)) message = "Last name must not be empty or containing only blank spaces";
-						
-			if (message.equals(""))
-				return true;
-			else throw new IllegalArgumentException(message);
-		}
-
-		@Override
-		public String toString() {
-			return "User [id=" + id + ", username=" + username + ", password=" + password + ", email="
-					+ email + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
-					+ ", image=" + Arrays.toString(image) + ", country=" + country + ", role=" + role + "]";
 		}
 }
