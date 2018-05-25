@@ -14,8 +14,40 @@ services:
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+    user-auth-service:
+        image: userauth-build
+        expose:
+            - 8070
+        ports:
+            - 8070:8070
+        links:
+            - dbusers:dbusers
+            - eureka
+            - gateway
+        depends_on:
+            - dbusers
+            - eureka
+            - gateway
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+    tourhost-auth-service:
+        image: tourhostauth-build
+        expose:
+            - 8080
+        ports:
+            - 8080:8080
+        links:
+            - dbtourhost:dbtourhost
+            - eureka
+            - gateway
+        depends_on:
+            - dbusers
+            - eureka
+            - gateway
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
     offers-client:
-            image: offer-build
+            image: offers-build
             expose:
                 - 8060
             ports:
@@ -29,7 +61,7 @@ services:
             environment:
                 EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka            
     user-service:
-            image: user-build
+            image: users-build
             expose:
                 - 8010
             ports:

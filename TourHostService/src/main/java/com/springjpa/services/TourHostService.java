@@ -66,40 +66,9 @@ public class TourHostService{
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please insert email");
     	else if (host.getNameTourHost()=="")
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please insert tour host name");
-        
-        host.setPasswordTourHost(toMD5(host.getPasswordTourHost()));
+
         TourHost newHost = hostRepo.save(host);
 
         return ResponseEntity.status(HttpStatus.OK).body( newHost != null);
     }
-    
-    
-	public String toMD5(String str){
-        byte[] pass = null;
-        
-        try {
-			pass = str.getBytes("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-        
-        MessageDigest m = null;
-		try {
-			m = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		StringBuffer hexString = new StringBuffer();
-		
-		byte[] passHash = m.digest(pass);
-		
-		for (int i = 0; i < passHash.length; i++) {
-		    if ((0xff & passHash[i]) < 0x10)
-		        hexString.append("0" + Integer.toHexString((0xFF & passHash[i])));
-		    else
-		        hexString.append(Integer.toHexString(0xFF & passHash[i]));
-		}		
-		return hexString.toString();
-   }
 }

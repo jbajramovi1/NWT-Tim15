@@ -1,7 +1,6 @@
 package com.springjpa.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +13,14 @@ import javax.persistence.Table;
 public class TourHost implements Serializable {
  
 	private static final long serialVersionUID = -3009157732242241606L;
+	public static final String roleTourHost = "ROLE_TOURHOST";	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
-	private int idTourHost;
- 
-	@Column(name = "username")
+	@Column(name="id", updatable = false, nullable = false)
+	private int idTourHost;	
+
+	@Column(name = "username", unique = true, nullable = false)
 	private String usernameTourHost;
 	
 	@Column(name = "pwHash")
@@ -30,14 +31,17 @@ public class TourHost implements Serializable {
  
 	@Column(name = "name")
 	private String nameTourHost;
+	
+	private String role;
  
 	public TourHost() {}
  
-	public TourHost(String username, String pwHash, String email, String name) {
+	public TourHost(String username, String pwHash, String email, String name, String role) {
 		this.usernameTourHost = username;
 		this.passwordTourHost = pwHash;
 		this.emailTourHost = email;
 		this.nameTourHost = name;
+		this.role = roleTourHost;
 	}
 	
 	public String getUsernameTourHost(){
@@ -70,6 +74,13 @@ public class TourHost implements Serializable {
 	
 	public void setNameTourHost(String name){
 		this.nameTourHost = name;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
  
 	@Override

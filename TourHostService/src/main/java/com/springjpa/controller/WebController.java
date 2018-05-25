@@ -67,8 +67,8 @@ public class WebController {
 	
 	@RequestMapping("/save")
 	public String process(){
-		hostRepo.save(new TourHost("insider_sa", "34819d7beeabb9260a5c854bc85b3e44", "insider@sarajevo.ba", "Insider Sarajevo"));	
-		hostRepo.save(new TourHost("myBosnia", "81c93a6d22daaa5fdb4dbd4267e5e06e", "mybosnia@gmail.com", "My Bosnia"));
+		hostRepo.save(new TourHost("insider_sa", "test", "insider@sarajevo.ba", "Insider Sarajevo", ""));	
+		hostRepo.save(new TourHost("myBosnia", "test", "mybosnia@gmail.com", "My Bosnia", ""));
 		return null;
 	}
 		
