@@ -12,8 +12,10 @@ Router.map(function() {
     this.route('booking');
     this.route('login');
     this.route('register-user');
+    this.route('register-host');
   });
   this.route('welcome');
+
 
 
 });

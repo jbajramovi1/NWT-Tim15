@@ -170,6 +170,17 @@ body{
   margin-left: 150px;
 }
 
+.register-host{
+  height: 700px;
+  width: 700px;
+  border: 1px solid #80d0c7;
+  margin: auto auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: 30px;
+  margin-left: 150px;
+}
+
 .register-div-up{
   width: 100%;
   height: 85%;
