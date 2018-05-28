@@ -16,11 +16,7 @@ import com.springjpa.services.TourHostService;
 import com.springjpa.services.UserService;
 import com.springjpa.services.RecommendationService;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
  
 @RestController
@@ -42,7 +38,8 @@ public class WebController {
     protected RestTemplate restTemplate; 
  
     protected String serviceUrl = "http://USER-SERVICE";
-				
+
+    @CrossOrigin(origins = "*")
 	@RequestMapping(value = "/addrecommendation", method = RequestMethod.GET)
 	public ResponseEntity<Object> addRecommendation(@RequestParam(name = "user") int user, @RequestParam(name = "host") int host) {
 	    try {	
@@ -64,14 +61,16 @@ public class WebController {
 	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error!");
         }
 	  }
-	
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/save")
 	public String process(){
 		hostRepo.save(new TourHost("insider_sa", "test", "insider@sarajevo.ba", "Insider Sarajevo", ""));	
 		hostRepo.save(new TourHost("myBosnia", "test", "mybosnia@gmail.com", "My Bosnia", ""));
 		return null;
 	}
-		
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/findall", method = RequestMethod.GET)
 	public ResponseEntity<Object> findAll(){
 		List<TourHost> allTourHosts = hostService.findAllTourHosts();
@@ -80,8 +79,9 @@ public class WebController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host has been found");
     	else	   						
     		return ResponseEntity.ok(allTourHosts);
-	}	
-	
+	}
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public ResponseEntity<Object> findTourHost(@RequestParam(name = "user") int id){
 		TourHost tourHost = hostService.findTourHost(id);
@@ -91,7 +91,8 @@ public class WebController {
     	else	   						
     		return ResponseEntity.ok(tourHost);
 	}
-	
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestBody TourHost tourHost)
     {
@@ -103,7 +104,8 @@ public class WebController {
         	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
         }
     }
-	
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> removeTourHost(@RequestParam(name = "host") int id){
 		TourHost host = hostRepo.findByIdTourHost(Integer.valueOf(id));
