@@ -17,8 +17,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
         .authorizeRequests()
-        .antMatchers(HttpMethod.POST,"/user-login").permitAll()
-        .antMatchers(HttpMethod.POST,"/tourhost-login").permitAll()
+        .antMatchers("/user-login").permitAll()
+        .antMatchers("/tourhost-login").permitAll()
         .antMatchers("/user-service/saveUser").permitAll()
         .antMatchers("/tourhost/**").permitAll()
         .antMatchers("/user-service/**").permitAll()
