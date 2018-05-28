@@ -15,7 +15,7 @@ export default Controller.extend({
           role: "ROLE_TOURHOST"
       };
       this.get("host").registerTourHost(data).then(x => {
-            self.get('router').transitionTo('dashboard.offers');
+            self.get('router').transitionTo('dashboard.login');
             self.set("serverSuccess", true);
             self.set("serverError", false);
             self.set("serverErrorText", "");

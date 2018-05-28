@@ -3,20 +3,16 @@
     <div class="login">
       <div class="login-div-up">
         <img class="login-logo" src="/assets/images/welcome.png">
-
-            <div clas="login-form">
-                    <div class="form-group">
-                          <input type="email" class="form-control login-form__input" name="email" placeholder="E-mail"  />
-                      </div>
-                      <div class="form-group">
-                          <input type="password" class="form-control login-form__input" name="password" placeholder="Password"/>
-                      </div>
-
-
+          <div clas="login-form">
+              <div class="form-group">
+                    {{input type="username" class="form-control login-form__input" name="email" value=username placeholder="Username"}}
+                </div>
+                <div class="form-group">
+                    {{input type="password" class="form-control login-form__input" name="password" value=password placeholder="Password"}}
+                </div>
              </div>
-
       </div>
-      <button class="btn btn-outline-info login-button" name="login" >LOGIN</button>
+      <button class="btn btn-outline-info login-button" name="login" {{action 'login'}}>LOGIN</button>
       <button class="btn btn-light login-reg-button" name="register" >Register now</button>
 
     </div>

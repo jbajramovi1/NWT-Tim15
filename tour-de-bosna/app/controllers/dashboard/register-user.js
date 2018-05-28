@@ -17,7 +17,7 @@ export default Controller.extend({
           passwordHash: self.get('password')
       };
       this.get("user").registerUser(data).then(x => {
-        self.get('router').transitionTo('dashboard.offers');
+        self.get('router').transitionTo('dashboard.login');
         self.set("serverSuccess", true);
         self.set("serverError", false);
         self.set("serverErrorText", "");
