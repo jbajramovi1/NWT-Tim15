@@ -6,8 +6,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/user-service/saveUser").permitAll()
         .antMatchers("/tourhost/**").permitAll()
         .antMatchers("/user-service/**").permitAll()
+        .antMatchers("/booking-service/**").permitAll()
+        .antMatchers("/offers-client/**").permitAll()
         .antMatchers("/**/*.html").permitAll()
         .anyRequest().authenticated();
     }
