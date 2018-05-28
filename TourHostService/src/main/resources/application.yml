@@ -8,13 +8,17 @@ spring:
     generate-ddl: true
     
   application:
-     name: tourhost-service     
+     name: tourhost-service
+     
+  resources:
+    chain:
+      enabled: true     
     
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:9091
+      defaultZone: http://eureka:9091/eureka
 
 # HTTP Server
 server:
@@ -22,5 +26,11 @@ server:
  
 security:
   basic:
-    enable: false   
+    enable: true   
+     
+jwt:
+  header: Authorization
+  secret: NWT-TourDeBosna
+
+    
     
