@@ -1,43 +1,40 @@
 <div class="container">
-
   <div class="center-div-register">
     <div class="register">
       <div class="register-div-up">
         <img class="login-logo" src="/assets/images/welcome.png">
-
             <div clas="login-form">
-                    <div class="form-group">
-                          <input type="firstname" class="form-control login-form__input" name="firstname" placeholder="Firstname"  />
-                      </div>
-                      <div class="form-group">
-                          <input type="lastname" class="form-control login-form__input" name="lastname" placeholder="Lastname"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="email" class="form-control login-form__input" name="email" placeholder="E-mail"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="country" class="form-control login-form__input" name="country" placeholder="Country"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="phoneNumber" class="form-control login-form__input" name="phoneNumber" placeholder="Phone number"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="username" class="form-control login-form__input" name="username" placeholder="Username"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="password" class="form-control login-form__input" name="password" placeholder="Password"/>
-                      </div>
-                      <div class="form-group">
-                          <input type="conf-password" class="form-control login-form__input" name="conf-password" placeholder="Confirm password"/>
-                      </div>
+              <div class="form-group">
+                  {{input type="firstname" class="form-control login-form__input" value=firstName placeholder="First Name"}}
+                </div>
+                <div class="form-group">
+                  {{input type="lastname" class="form-control login-form__input" value=lastName placeholder="Last Name"}}
+                </div>
+                <div class="form-group">
+                  {{input type="email" class="form-control login-form__input" value=email placeholder="E-mail"}}
+                </div>
+                <div class="form-group">
+                  {{input type="country" class="form-control login-form__input" value=country placeholder="Country"}}
+                </div>
+                <div class="form-group">
+                  {{input type="phoneNumber" class="form-control login-form__input" value=phoneNumber placeholder="Phone number"}}
+                </div>
+                <div class="form-group">
+                  {{input type="username" class="form-control login-form__input" value=username placeholder="Username"}}
+                </div>
+                <div class="form-group">
+                  {{input type="password" class="form-control login-form__input" value=password placeholder="Password"}}
+                </div>
+                <div class="form-group">
+                  {{input type="password" class="form-control login-form__input" name="conf-password" placeholder="Confirm password"}}
+                </div>
              </div>
-
       </div>
-      <button class="btn btn-outline-info login-button" name="register" >REGISTER</button>
-
+      <button class="btn btn-outline-info login-button" name="register" {{action 'register'}}>REGISTER</button>
     </div>
+    {{#if serverError}}
+      <p class="error">You are not able to register account because {{serverErrorText}}</p>
+    {{/if}}
   </div>
-
 </div>
-
 {{outlet}}

@@ -204,3 +204,7 @@ body{
   border-radius: 3px;
   text-align: center;
 }
+
+.error {
+  color: red;
+}

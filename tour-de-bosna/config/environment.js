@@ -31,6 +31,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.API_BOOKING = "http://localhost:8085";
     ENV.APP.API_OFFER = "http://localhost:8060";
+    ENV.APP.API_TOUR_HOST = "http://localhost:8090";
+    ENV.APP.API_USER = "http://localhost:8010";
   }
 
   if (environment === 'test') {
