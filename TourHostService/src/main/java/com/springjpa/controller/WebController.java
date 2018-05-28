@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -17,7 +19,15 @@ import com.springjpa.services.UserService;
 import com.springjpa.services.RecommendationService;
 
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpEntity;
  
 @RestController
 public class WebController {
@@ -36,17 +46,21 @@ public class WebController {
     @Autowired
     @LoadBalanced
     protected RestTemplate restTemplate; 
- 
-    protected String serviceUrl = "http://USER-SERVICE";
 
-    @CrossOrigin(origins = "*")
+    protected String serviceUrl = "http://ZUULAPIGATEWAY";
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/addrecommendation", method = RequestMethod.GET)
-	public ResponseEntity<Object> addRecommendation(@RequestParam(name = "user") int user, @RequestParam(name = "host") int host) {
-	    try {	
-	    	User response = restTemplate.getForObject(serviceUrl
-	                + "/user?id={user}",  User.class, user);
+	public ResponseEntity<Object> addRecommendation(@RequestHeader("Authorization") String token, @RequestHeader("Roles") String role, @RequestParam(name = "user") int user, @RequestParam(name = "host") int host) {
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.set("Authorization", token);
+	    headers.set("Roles", role);
+	    HttpEntity<String> entity = new HttpEntity<String>(headers); 
+	    		
+		try {
+	    	ResponseEntity<User> response = restTemplate.exchange(serviceUrl + "/user-service/user?id={user}",  HttpMethod.GET, entity, User.class, user);
 	    			
-			userService.checkUser(response, user);
+			userService.checkUser(response.getBody(), user);
 			User myUser = userService.findUser(user);  
 		    
 		    TourHost tourHost = hostService.findTourHost(host); 	        
