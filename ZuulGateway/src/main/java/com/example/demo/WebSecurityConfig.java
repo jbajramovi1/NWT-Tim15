@@ -20,7 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .antMatchers("/user-login").permitAll()
         .antMatchers("/tourhost-login").permitAll()
-        .antMatchers("/user-service/saveUser").permitAll()
         .antMatchers("/tourhost/**").permitAll()
         .antMatchers("/user-service/**").permitAll()
         .antMatchers("/booking-service/**").permitAll()
