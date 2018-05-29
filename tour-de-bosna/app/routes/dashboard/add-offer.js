@@ -4,7 +4,8 @@ export default Route.extend({
   offer: Ember.inject.service(),
   model: function(params, transition) {
     return Ember.RSVP.hash({
-      offers: this.get('offer').getOffers()
-      })
+      offerTypes: this.get('offer').getOfferTypes(),
+      offerSeasons: this.get('offer').getOfferSeasons()
+    })
   }
 });

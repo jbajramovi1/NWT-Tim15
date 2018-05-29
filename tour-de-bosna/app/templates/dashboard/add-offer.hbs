@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="center-div-register">
+
+    <div class="add-offer">
+      <img class="offer-logo" src="/assets/images/welcome.png">
+      <h2 class="offer-title">Create a tour offer</h2>
+        <div clas="add-offer-form">
+
+          <div class="form-group">
+            {{input type="name" class="form-control offer-form__input" value=name placeholder="Name"}}
+          </div>
+          <div class="form-group">
+            {{input type="language" class="form-control offer-form__input" value=language placeholder="Language"}}
+          </div>
+          <div class="form-group">
+            {{input type="duration" class="form-control offer-form__input" value=duration placeholder="Duration (in days)"}}
+          </div>
+          <div class="form-group">
+              <select class="offer-form__input" onchange={{action 'setType' value="target.value"}}>
+                {{#each offerTypes as |type|}}
+                  <option value={{type.id}} >{{type.name}}</option>
+                {{/each}}
+              </select>
+          </div>
+          <div class="form-group">
+            <select class="offer-form__input" onchange={{action 'setSeason' value="target.value"}}>
+              {{#each offerSeasons as |season|}}
+                <option value={{season.id}} >{{season.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+              {{input type="price" class="form-control offer-form__input" value=price placeholder="Price"}}
+
+          </div>
+          <div class="form-group">
+              {{input type="participantsLimit" class="form-control offer-form__input" value=participantsLimit placeholder="Participants limit"}}
+
+          </div>
+          <div class="form-group">
+            {{textarea rows="4" class="form-control offer-form__input large-input" value=description placeholder="Description..."}}
+          </div>
+          <button class="btn add-offer-button btn-info" name="register" {{action 'createOffer'}} >CREATE</button>
+         </div>
+         {{#if serverError}}
+           <span>{{serverErrorText}}</span>
+         {{/if}}
+    </div>
+  </div>
+</div>
+{{outlet}}
