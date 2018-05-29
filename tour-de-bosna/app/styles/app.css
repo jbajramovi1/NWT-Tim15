@@ -229,12 +229,14 @@ body{
 }
 
 .offers-image img{
-  position: absolute; right: 0; bottom: 0;
+  position: relative; right: 0; bottom: 0;
 
   display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 
 .offers-price{
@@ -276,4 +278,55 @@ body{
 .offers-item:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.add-offer{
+  height: 1000px;
+  width: 700px;
+  background-image: linear-gradient(15deg, #fefefe 0%, #ffcc00 40%);
+  margin: auto auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: 50px;
+  margin-left: 200px;
+  padding: 50px;
+}
+
+.add-offer-button{
+  font-family: 'Lato', sans-serif;
+  font-size:0.8em;
+  margin-top: 50px!important;
+  height: 50px!important;
+  width: 90%!important;
+}
+
+.offer-form__input {
+  width: 90%;
+ 	height: 40px;
+
+ 	border-style: none;
+  border-radius: 0!important;
+  box-shadow: none!important;
+  color: grey!important;
+ 	border-bottom: 0.3px solid #fefefe!important;
+  background-color: white;
+ 	text-align: left;
+  font-size:1.1em;
+  margin: auto;
+}
+
+.offer-logo{
+  margin: 40px;
+  margin-bottom: 0px;
+  height: 100px;
+  width: 100px;
+}
+
+.offer-title{
+  color: #fefefe;
+  margin: 50px;
+}
+
+.large-input{
+  height: auto;
 }

@@ -22,6 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .antMatchers(HttpMethod.POST,"/register").permitAll()
         .antMatchers(HttpMethod.POST,"/saveUser").permitAll()
+
+
         .anyRequest().authenticated()
         .and()
         .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

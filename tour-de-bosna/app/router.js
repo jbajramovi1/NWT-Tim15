@@ -14,8 +14,10 @@ Router.map(function() {
     this.route('register-user');
     this.route('register-host');
     this.route('offers-host');
+    this.route('add-offer');
   });
   this.route('welcome');
+
 
 
 

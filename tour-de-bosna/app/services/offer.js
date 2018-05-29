@@ -11,6 +11,18 @@ export default ApplicationService.extend({
          return result;
       });
   },
+  getOfferTypes: function(){
+    return this.ajax({url: '/offertype/getAll', type: 'GET'})
+    .then(function(result) {
+       return result;
+    });
+  },
+  getOfferSeasons: function(){
+    return this.ajax({url: '/offerseason/getAll', type: 'GET'})
+    .then(function(result) {
+       return result;
+    });
+  },
   getOffer: function(id) {
     return this.ajax({url: '/offer/get' + id, type: 'GET'})
       .then(function(result) {

@@ -32,18 +32,18 @@ public class OfferController {
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<Object> createOffer(@RequestHeader("Authorization") String token, @RequestHeader("Roles") String role, @RequestBody Offer data){
-    	HttpHeaders headers = new HttpHeaders();
+    public ResponseEntity<Object> createOffer(/*@RequestHeader("Authorization") String token, @RequestHeader("Roles") String role,*/ @RequestBody Offer data){
+    	/*HttpHeaders headers = new HttpHeaders();
 	    headers.set("Authorization", token);
 	    headers.set("Roles", role);
 	    HttpEntity<String> entity = new HttpEntity<String>(headers);
-	    
+	    */
     	try {
-            InstanceInfo instanceInfo = discoveryClient.getNextServerFromEureka("ZuulAPIGateway", false);
+            /*InstanceInfo instanceInfo = discoveryClient.getNextServerFromEureka("ZuulAPIGateway", false);
             String url = instanceInfo.getHomePageUrl() + "/tourhost/find?user="+data.getTourHost();
 
             Object response = new RestTemplate().exchange(url, HttpMethod.GET, entity, Object.class, data.getTourHost());
-
+            */
             return ResponseEntity.status(HttpStatus.OK).body(offerService.createOffer(data));
         }
         catch (HttpClientErrorException exception){
