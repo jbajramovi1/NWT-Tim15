@@ -13,8 +13,10 @@ Router.map(function() {
     this.route('login');
     this.route('register-user');
     this.route('register-host');
+    this.route('offers-host');
   });
   this.route('welcome');
+
 
 
 

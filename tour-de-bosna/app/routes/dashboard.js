@@ -6,7 +6,7 @@ export default Route.extend({
 
   model: function(params, transition) {
     return Ember.RSVP.hash({
-      //offers: this.get('offer').getOffers(),
+      //offers: this.get('offer').getOffers()
       //booking: this.get('booking').getBookings()
     })
   }
