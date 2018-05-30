@@ -5,4 +5,10 @@ export default Controller.extend({
   offers: function() {
     return this.get('model.offers');
   }.property('model.offers'),
+
+  actions:{
+    replace:function(){
+      document.getElementById('offer-image').src = '/assets/images/alt.png';
+    }
+  }
 });

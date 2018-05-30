@@ -1,11 +1,26 @@
-{{outlet}}
-
-<div class="offers-image" ><img src="/assets/images/{{offer.id}}.png" >
+<div class="row">
+<div class="offers-div-up" ><img src="/assets/images/{{offer.id}}.png" >
+  <h2 class="offers-title title-offer">{{offer.name}}</h2>
   <div class="offers-price">{{offer.price}}KM</div>
+
 </div>
-<div class="offers-text">
-  <h2 class="offers-title">{{offer.name}}</h2>
-  <div class="offers-detail"><span class="glyphicon glyphicon-star-empty"></span>  {{offer.description}} </div>
-  <div class="offers-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.duration}} days</div>
-  <div class="offers-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.offerSeason.name}}</div>
+<div class="offers-div-down">
+  <div class="offer-desc" > {{offer.description}} </div>
+  <hr class="line">
+  <div class="offer-text">
+
+
+    <div class="offer-par">Duration: </div>
+    <div class="offer-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.duration}} days</div>
+    <div class="offer-par">Offer type: </div>
+    <div class="offer-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.offerType.name}}</div>
+    <div class="offer-par">Offer season: </div>
+    <div class="offer-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.offerSeason.name}}</div>
+    <div class="offer-par">Language: </div>
+    <div class="offer-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.language}}</div>
+    <div class="offer-par">Participants limit: </div>
+    <div class="offer-detail"><span class="glyphicon glyphicon-time"></span>  {{offer.participantsLimit}}</div>
+  </div>
 </div>
+</div>
+{{outlet}}

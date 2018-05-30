@@ -29,6 +29,10 @@ body{
   text-align: right;
 }
 
+.brand-link{
+  color: grey!important;
+}
+
 .center-div
 {
   position: absolute;
@@ -268,6 +272,7 @@ body{
   color: white;
   font-size:20px;
   text-shadow: 2px 2px black;
+  height: 100%;
 }
 
 .offers-detail{
@@ -348,4 +353,64 @@ body{
 .add-offer-btn:hover{
   background-color: #ffcc00!important;
   border: 1px solid #fefefe;
+}
+
+.offers-div-up{
+  height: 400px;
+
+  float: left;
+  position: relative;
+  margin: 0 15px 0 0;
+  text-align: center;
+
+  width: 100%;
+}
+
+.offers-div-up img{
+  position: relative; right: 0; bottom: 0;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.offers-div-down{
+  padding: 10px;
+  padding-top: 30px;
+  height: 500px;
+  position: relative;
+}
+
+.title-offer{
+  bottom:0;
+  padding: 20px;
+  color: white;
+  font-size:40px;
+  text-shadow: 2px 2px black;
+  position: absolute;
+}
+
+.offer-text{
+  width: 500px;
+  padding: 30px;
+  color: gray;
+  font-size:20px;
+}
+
+.offer-par{
+  width: 60%;
+  float: left;
+  padding: 10px;
+
+}
+.offer-desc{
+  font-size:22px;
+  color: #202030;
+}
+.offer-detail{
+  margin-left: 200px;
+  padding: 10px;
 }

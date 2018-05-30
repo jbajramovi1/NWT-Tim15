@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   offer: Ember.inject.service(),
   router: Ember.inject.service(),
+  authentication: Ember.inject.service(),
   offerType:1,
   offerSeason:1,
 
@@ -32,13 +33,13 @@ export default Controller.extend({
           duration: self.get('duration'),
           offerType: {id:self.get('offerType')},
           offerSeason: {id:self.get('offerSeason')},
-          tourHost: 4
+          tourHost: this.get('authentication').get('username')
       };
-      this.get("offer").createOffer(data).then(x => {
+      this.get('offer').createOffer(data).then(x => {
             self.set("serverSuccess", true);
             self.set("serverError", false);
             self.set("serverErrorText", "");
-            
+            this.get('router').transitionTo('dashboard.offers-host');
 
         }).catch(err => {
             self.set("serverSuccess", false);
