@@ -4,7 +4,7 @@ import ENV from '../config/environment';
 
 export default ApplicationService.extend({
   apiUrl: ENV.APP.API_USER,
-
+  
   getUsers: function() {
     return this.ajax({url: '/', type: 'GET'})
       .then(function(result) {

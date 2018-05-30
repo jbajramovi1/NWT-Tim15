@@ -13,8 +13,11 @@
              </div>
       </div>
       <button class="btn btn-outline-info login-button" name="login" {{action 'login'}}>LOGIN</button>
-      <button class="btn btn-light login-reg-button" name="register" >Register now</button>
-
+      <button class="btn btn-light login-reg-button" name="register" {{action 'register'}} >Register now</button>
+      <br>
+      {{#link-to "dashboard.offers" class="nav-link"}}
+        <span>Continue as a guest</span>
+      {{/link-to}}
     </div>
   </div>
 </div>

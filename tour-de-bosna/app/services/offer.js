@@ -11,6 +11,12 @@ export default ApplicationService.extend({
          return result;
       });
   },
+  getOffersByHost: function(host) {
+    return this.ajax({url: '/offer/getbyhost/'+host, type: 'GET'})
+      .then(function(result) {
+         return result;
+      });
+  },
   getOfferTypes: function(){
     return this.ajax({url: '/offertype/getAll', type: 'GET'})
     .then(function(result) {

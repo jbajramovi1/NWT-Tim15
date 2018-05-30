@@ -6,7 +6,13 @@ export default Controller.extend({
 
   offers: function() {
     return this.get('model.offers');
-  }.property('model.offers')
+  }.property('model.offers'),
+
+  actions:{
+    createtour:function(){
+      this.get('router').transitionTo('dashboard.add-offer');
+    }
+  }
 
 
 });

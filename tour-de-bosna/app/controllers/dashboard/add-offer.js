@@ -38,7 +38,7 @@ export default Controller.extend({
             self.set("serverSuccess", true);
             self.set("serverError", false);
             self.set("serverErrorText", "");
-            alert("created");
+            
 
         }).catch(err => {
             self.set("serverSuccess", false);

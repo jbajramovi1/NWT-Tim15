@@ -6,11 +6,8 @@ export default Controller.extend({
   actions: {
     redirectTo: function(userRole) {
       this.set('userRole', userRole);
-      if (userRole === 'ROLE_USER') {
-        this.get('router').transitionTo('dashboard.register-user');
-      } else {
-        this.get('router').transitionTo('dashboard.register-host');
-      }
+      this.get('router').transitionTo('dashboard.login');
+
     }
   }
 });
