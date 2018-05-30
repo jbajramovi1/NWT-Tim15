@@ -107,6 +107,17 @@ public class WebController {
 	}
 
 	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/findbyusername", method = RequestMethod.GET)
+	public ResponseEntity<Object> findTourHostByUsername(@RequestParam(name = "user") String username){
+		TourHost tourHost = hostService.findTourHostByUsername(username);
+
+		if (tourHost == null)
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host has been found");
+		else
+			return ResponseEntity.ok(tourHost);
+	}
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestBody TourHost tourHost)
     {

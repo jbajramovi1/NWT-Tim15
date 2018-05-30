@@ -1,8 +1,8 @@
 #Spring 
 spring:
   datasource:
-    password: 123
-    url: jdbc:postgresql://tourhost-db:5432/postgres
+    password: pass
+    url: jdbc:postgresql://localhost:5432/tourhost
     username: postgres
   jpa:
     generate-ddl: true
@@ -18,7 +18,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka:9091/eureka
+      defaultZone: http://localhost:9091/eureka
 
 # HTTP Server
 server:

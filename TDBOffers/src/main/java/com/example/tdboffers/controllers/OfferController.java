@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.lang.reflect.Field;
+
 @Controller
 @RequestMapping("/offer")
 public class OfferController {
@@ -27,6 +30,7 @@ public class OfferController {
     @Qualifier("eurekaClient")
     @Autowired
     EurekaClient discoveryClient;
+    private Field idTourHost;
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/create" ,consumes = "application/json",method = RequestMethod.POST)
@@ -67,12 +71,14 @@ public class OfferController {
             Object response = new RestTemplate().getForObject(
                     url, Object.class, host);
 
+
             return ResponseEntity.status(HttpStatus.OK).body(offerService.getByTourHost(host));
         }
         catch (HttpClientErrorException exception){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No tour host with given id");
         }
     }
+
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

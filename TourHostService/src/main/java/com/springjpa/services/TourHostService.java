@@ -43,6 +43,10 @@ public class TourHostService{
     public TourHost findTourHost (int id) {
         return hostRepo.findByIdTourHost(Integer.valueOf(id));
     }
+
+	public TourHost findTourHostByUsername (String username) {
+		return hostRepo.findByUsernameTourHost(username);
+	}
 	
     public ResponseEntity<Object> removeTourHost(int id) {
     	TourHost host = hostRepo.findByIdTourHost(id);
