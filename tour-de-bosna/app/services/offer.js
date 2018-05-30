@@ -24,7 +24,7 @@ export default ApplicationService.extend({
     });
   },
   getOffer: function(id) {
-    return this.ajax({url: '/offer/get' + id, type: 'GET'})
+    return this.ajax({url: '/offer/get/' + id, type: 'GET'})
       .then(function(result) {
          return result;
       });

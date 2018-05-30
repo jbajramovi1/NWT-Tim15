@@ -15,13 +15,9 @@ Router.map(function() {
     this.route('register-host');
     this.route('offers-host');
     this.route('add-offer');
+    this.route('offer');
   });
   this.route('welcome');
-
-
-
-
-
 });
 
 export default Router;
