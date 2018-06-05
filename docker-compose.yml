@@ -47,33 +47,47 @@ services:
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
     offers-client:
-            image: offers-build
-            expose:
-                - 8060
-            ports:
-                - 8060:8060
-            links:
-                - dboffers:dboffers
-                - eureka
-            depends_on:
-                - dboffers
-                - eureka
-            environment:
-                EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka            
+        image: offers-build
+        expose:
+            - 8060
+        ports:
+            - 8060:8060
+        links:
+            - dboffers:dboffers
+            - eureka
+        depends_on:
+            - dboffers
+            - eureka
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka            
     user-service:
-            image: users-build
-            expose:
-                - 8010
-            ports:
-                - 8010:8010
-            links:
-                - dbusers:dbusers
-                - eureka
-            depends_on:
-                - dbusers
-                - eureka
-            environment:
-                EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+        image: users-build
+        expose:
+            - 8010
+        ports:
+            - 8010:8010
+        links:
+            - dbusers:dbusers
+            - eureka
+        depends_on:
+            - dbusers
+            - eureka
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
+    booking-service:
+        image: booking-build
+        expose:
+            - 8085
+        ports:
+            - 8085:8085
+        links:
+            - dbbooking:dbbooking
+            - eureka
+        depends_on:
+            - dbbooking
+            - eureka
+        environment:
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:9091/eureka
     gateway:
         image: zuul-build
         ports:
@@ -104,32 +118,45 @@ services:
             - POSTGRES_DB=postgres
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
-            - 5432      
+            - 5432   
+    dbbooking:
+        container_name: booking-db
+        image: postgres:9.5
+        volumes:
+            - tourhost-db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=123
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432     
     dboffers:
-            container_name: offers-db
-            image: postgres:9.5
-            volumes:
-                - offers-db:/var/lib/postgresql/data
-            environment:
-                - POSTGRES_PASSWORD=123
-                - POSTGRES_USER=postgres
-                - POSTGRES_DB=dboffers
-                - PGDATA=/var/lib/postgresql/data/pgdata
-            ports:
-                - 5432          
+        container_name: offers-db
+        image: postgres:9.5
+        volumes:
+            - offers-db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=123
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=dboffers
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432          
     dbusers:
-            container_name: users-db
-            image: postgres:9.5
-            volumes:
-                - users-db:/var/lib/postgresql/data
-            environment:
-                - POSTGRES_PASSWORD=123
-                - POSTGRES_USER=postgres
-                - POSTGRES_DB=users
-                - PGDATA=/var/lib/postgresql/data/pgdata
-            ports:
-                - 5432
+        container_name: users-db
+        image: postgres:9.5
+        volumes:
+            - users-db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=123
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=users
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432
 volumes:
     tourhost-db: {}
     offers-db: {}
     users-db: {}
+    booking-db: {}
