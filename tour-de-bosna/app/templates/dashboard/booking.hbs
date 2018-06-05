@@ -1,1 +1,11 @@
+<button {{action "toggleModal"}}>Toggle Modal</button>
+ 
+{{#if isShowingModal}}
+  {{#modal-dialog
+  tetherTarget='#target-element-id'
+  targetAttachment='middle right'
+  attachment='middle left'}}
+  I am a modal that will remain tethered to the right of the element with id 'target-element-id'
+{{/modal-dialog}}
+{{/if}}
 {{outlet}}

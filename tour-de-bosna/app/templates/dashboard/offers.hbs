@@ -14,11 +14,22 @@
         </div>
   </li>
   {{/link-to}}
+  <button class="btn btn-primary" {{action "toggleModal"}}>Book</button>
+    
+  {{#if isShowingModal}}
+    {{#modal-dialog onClose="toggleModal"
+                    targetAttachment="center"
+                    translucentOverlay=true
+                    containerClass="booking-modal"}}
+      <span>Choose a date:</span>
+      {{input type="date" class="form-control" name="date" value=date}}
+      {{#if date}}
+         <button class="btn btn-primary" {{action "saveBooking" offer}}>Save</button>
+      {{/if}}
+
+    {{/modal-dialog}}
+  {{/if}}
   {{/each}}
-
-
-
-
 </ul>
 </div>
 {{outlet}}

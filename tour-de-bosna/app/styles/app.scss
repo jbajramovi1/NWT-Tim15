@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400&subset=latin-ext');
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
 body{
   font-family: 'Lato', serif;
 }
 
 .welcome-body{
   font-family: 'Lato', serif;
-	font-weight: 300;
-	font-size: 3.2em;
+  font-weight: 300;
+  font-size: 3.2em;
   color: #fefefe;
-	}
+  }
 
 
 
@@ -81,7 +83,7 @@ body{
 
 .btn-welcome{
   font-weight: 350;
-	font-size: 0.6em;
+  font-size: 0.6em;
   margin: 20px;
   height: 150px;
   width: 300px;
@@ -124,14 +126,14 @@ body{
 
 .login-form__input {
   width: 80%;
- 	height: 50px;
- 	background-color: transparent!important;
- 	border-style: none;
+  height: 50px;
+  background-color: transparent!important;
+  border-style: none;
   border-radius: 0!important;
   box-shadow: none!important;
   color: #fefefe!important;
- 	border-bottom: 0.3px solid #fefefe!important;
- 	text-align: center;
+  border-bottom: 0.3px solid #fefefe!important;
+  text-align: center;
   font-size:1.1em;
   margin: auto;
 }
@@ -272,7 +274,6 @@ body{
   color: white;
   font-size:20px;
   text-shadow: 2px 2px black;
-  height: 100%;
 }
 
 .offers-detail{
@@ -307,15 +308,15 @@ body{
 
 .offer-form__input {
   width: 90%;
- 	height: 40px;
+  height: 40px;
 
- 	border-style: none;
+  border-style: none;
   border-radius: 0!important;
   box-shadow: none!important;
   color: grey!important;
- 	border-bottom: 0.3px solid #fefefe!important;
+  border-bottom: 0.3px solid #fefefe!important;
   background-color: white;
- 	text-align: left;
+  text-align: left;
   font-size:1.1em;
   margin: auto;
 }
@@ -393,7 +394,7 @@ body{
   position: absolute;
 }
 
-.offer-text{
+.offer-text {
   width: 500px;
   padding: 30px;
   color: gray;
@@ -413,4 +414,8 @@ body{
 .offer-detail{
   margin-left: 200px;
   padding: 10px;
+}
+.ember-modal-dialog {
+  width: 400px;
+  height: 200px;
 }

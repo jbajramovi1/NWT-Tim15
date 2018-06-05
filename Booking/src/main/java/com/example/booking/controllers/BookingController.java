@@ -50,7 +50,7 @@ public class BookingController {
 
     //Create booking
     @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path="/booking", method = RequestMethod.POST)
     public ResponseEntity<Booking> booking(@Valid @RequestBody BookingRequest request) {
         if (request.getOfferId() == null || !offerService.offerExists(request.getOfferId())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

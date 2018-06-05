@@ -1,4 +1,4 @@
-package com.example.tdboffers.security;
+package com.example.booking.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
