@@ -23,6 +23,19 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-simple-auth'] = {
+   authorizer: 'authorizer:token',
+   baseURL: ''
+ };
+
+ ENV['ember-simple-auth-token'] = {
+   refreshAccessTokens: false,
+   authorizer: 'authorizer:token',
+   identificationField: 'username',
+   passwordField: 'password',
+   serverTokenEndpoint: ""
+ };
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -53,6 +66,9 @@ module.exports = function(environment) {
     ENV.APP.API_BOOKING = "http://localhost:8085";
     ENV.APP.API_OFFER = "http://localhost:8060";
   }
+
+  ENV['ember-simple-auth'].baseURL = ENV.apiHost;
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = "${ENV.apiHost}/login";
 
   return ENV;
 };
