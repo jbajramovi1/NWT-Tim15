@@ -12,11 +12,21 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 
       </li>
+      {{#if roleIsHost}}
+      <li class="nav-item">
+        {{#link-to "dashboard.offers-host" class="nav-link"}}
+          <span>Your Offers</span>
+        {{/link-to}}
+      </li>
+      {{else}}
       <li class="nav-item">
         {{#link-to "dashboard.offers" class="nav-link"}}
           <span>Offers</span>
         {{/link-to}}
       </li>
+      {{/if}}
+
+      {{#if isNotLoggedIn}}
       <li class="nav-item">
         {{#link-to "dashboard.register-user" class="nav-link"}}
           <span>Register</span>
@@ -27,17 +37,17 @@
           <span>Login</span>
         {{/link-to}}
       </li>
+      {{/if}}
+      {{#unless isNotLoggedIn}}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Settings
         </a>
         <div class="dropdown-menu dashboard-dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" {{action 'logout'}}>Logout</a>
         </div>
       </li>
+      {{/unless}}
     </ul>
   </div>
 </nav>
