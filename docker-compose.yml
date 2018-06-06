@@ -154,7 +154,17 @@ services:
             - POSTGRES_DB=korisnici
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
-            - 5432
+            - 5432            
+    frontend:
+        container_name: ember_frontend
+        image: tour-de-bosna
+        volumes:
+            - ./tour-de-bosna:/usr/local/src/tour-de-bosna
+        working_dir: /usr/local/src/tour-de-bosna
+        command: bash -c "npm install -q && bower install -q --allow-root && ember server --watch"
+        ports:
+            - 4200:4200
+            - 49152:49152
 volumes:
     tourhost-db: {}
     offers-db: {}
