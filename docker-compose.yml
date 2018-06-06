@@ -115,7 +115,7 @@ services:
         environment:
             - POSTGRES_PASSWORD=123
             - POSTGRES_USER=postgres
-            - POSTGRES_DB=postgres
+            - POSTGRES_DB=tourhost
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - 5432   
@@ -123,11 +123,11 @@ services:
         container_name: booking-db
         image: postgres:9.5
         volumes:
-            - tourhost-db:/var/lib/postgresql/data
+            - booking-db:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=123
             - POSTGRES_USER=postgres
-            - POSTGRES_DB=postgres
+            - POSTGRES_DB=booking
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - 5432     
@@ -139,7 +139,7 @@ services:
         environment:
             - POSTGRES_PASSWORD=123
             - POSTGRES_USER=postgres
-            - POSTGRES_DB=dboffers
+            - POSTGRES_DB=offer
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - 5432          
@@ -151,7 +151,7 @@ services:
         environment:
             - POSTGRES_PASSWORD=123
             - POSTGRES_USER=postgres
-            - POSTGRES_DB=users
+            - POSTGRES_DB=korisnici
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - 5432
