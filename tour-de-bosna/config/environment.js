@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'tour-de-bosna',
@@ -68,7 +66,7 @@ module.exports = function(environment) {
   }
 
   ENV['ember-simple-auth'].baseURL = ENV.apiHost;
-  ENV['ember-simple-auth-token'].serverTokenEndpoint = "${ENV.apiHost}/login";
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = `user-login`;
 
   return ENV;
 };
