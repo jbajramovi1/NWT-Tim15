@@ -65,6 +65,8 @@ module.exports = function(environment) {
     ENV.APP.API_OFFER = "http://localhost:8060";
   }
 
+  apiHost = "http://localhost:9090"
+
   ENV['ember-simple-auth'].baseURL = ENV.apiHost;
   ENV['ember-simple-auth-token'].serverTokenEndpoint = `user-login`;
 

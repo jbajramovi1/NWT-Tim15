@@ -1,8 +1,8 @@
 #Spring 
 spring:
   datasource:
-    password: 123
-    url: jdbc:postgresql://tourhost-db:5432/postgres
+    password: elza2017    
+    url: jdbc:postgresql://localhost:5432/tourhost-db
     username: postgres
   jpa:
     generate-ddl: true

@@ -12,7 +12,7 @@ export default Service.extend({
       };
     }
 
-    params.url = `${this.apiUrl}/${params.url}`;
+    params.url = `${this.apiUrl}${params.url}`;
     params.contentType = "application/json";
     return $.ajax(params);
   },
@@ -26,7 +26,7 @@ ajaxWithoutContentType: function(params) {
      };
    }
 
-   params.url = `${this.apiUrl}/${params.url}`;
+   params.url = `${this.apiUrl}${params.url}`;
 
    return $.ajax(params);
 } });
